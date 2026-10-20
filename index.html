@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f0">
+  <meta name="description" content="درس‌یار؛ برنامه‌ریز مدرسه، مدیریت تکالیف، امتحان‌ها، نمره‌ها و یادداشت‌ها در یک محیط ساده و زیبا.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>درس‌یار | همراه هوشمند دانش‌آموز</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="page-glow glow-one" aria-hidden="true"></div>
+  <div class="page-glow glow-two" aria-hidden="true"></div>
+  <div class="app-frame">
+    <aside class="sidebar" aria-label="منوی اصلی">
+      <button class="brand-mark" data-route="dashboard" type="button" aria-label="رفتن به صفحه اصلی" title="درس‌یار">
+        <img class="brand-logo" src="favicon.svg" alt="" width="34" height="34">
+      </button>
+      <nav class="side-nav" id="sideNav">
+        <button class="nav-item active" data-route="dashboard" type="button" title="نمای کلی" aria-label="نمای کلی"><span class="nav-icon" data-icon="dashboard"></span><span class="nav-tooltip">نمای کلی</span></button>
+        <button class="nav-item" data-route="schedule" type="button" title="برنامه هفتگی" aria-label="برنامه هفتگی"><span class="nav-icon" data-icon="calendar"></span><span class="nav-tooltip">برنامه هفتگی</span></button>
+        <button class="nav-item" data-route="tasks" type="button" title="تکالیف" aria-label="تکالیف"><span class="nav-icon" data-icon="tasks"></span><span class="nav-tooltip">تکالیف</span></button>
+        <button class="nav-item" data-route="exams" type="button" title="امتحان‌ها" aria-label="امتحان‌ها"><span class="nav-icon" data-icon="exam"></span><span class="nav-tooltip">امتحان‌ها</span></button>
+        <button class="nav-item" data-route="grades" type="button" title="کارنامه" aria-label="کارنامه"><span class="nav-icon" data-icon="grades"></span><span class="nav-tooltip">کارنامه</span></button>
+        <button class="nav-item" data-route="notes" type="button" title="دفترچه شخصی" aria-label="دفترچه شخصی"><span class="nav-icon" data-icon="notes"></span><span class="nav-tooltip">دفترچه شخصی</span></button>
+        <button class="nav-item" data-route="focus" type="button" title="تمرکز" aria-label="تمرکز"><span class="nav-icon" data-icon="focus"></span><span class="nav-tooltip">تمرکز</span></button>
+        <button class="nav-item" data-route="reports" type="button" title="گزارش پیشرفت" aria-label="گزارش پیشرفت"><span class="nav-icon" data-icon="report"></span><span class="nav-tooltip">گزارش پیشرفت</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-item" data-route="settings" type="button" title="تنظیمات" aria-label="تنظیمات"><span class="nav-icon" data-icon="settings"></span><span class="nav-tooltip">تنظیمات</span></button>
+        <span class="sidebar-version">v2.0</span>
+      </div>
+    </aside>
+
+    <div class="app-main">
+      <header class="topbar">
+        <div class="topbar-heading">
+          <span class="eyebrow" id="pageEyebrow">فضای شخصی تو</span>
+          <h1 id="pageTitle">نمای کلی</h1>
+        </div>
+        <div class="topbar-actions">
+          <div class="global-search-wrap">
+            <span class="search-icon" data-icon="search"></span>
+            <input type="search" id="globalSearch" placeholder="جست‌وجوی درس، تکلیف، یادداشت..." autocomplete="off" aria-label="جست‌وجو در اطلاعات">
+            <div class="search-results" id="searchResults" hidden></div>
+          </div>
+          <button class="icon-button theme-button" id="themeToggle" type="button" aria-label="تغییر پوسته" title="حالت تاریک / روشن"><span data-icon="moon"></span></button>
+          <button class="icon-button" id="quickAddButton" type="button" aria-label="افزودن مورد جدید" title="افزودن سریع"><span data-icon="plus"></span></button>
+          <button class="avatar-button" data-route="settings" type="button" title="پروفایل و تنظیمات"><span id="avatarInitial">د</span></button>
+        </div>
+      </header>
+
+      <main id="pageContent" class="page-content" tabindex="-1" aria-live="polite"></main>
+      <footer class="app-footer"><span>درس‌یار</span><span class="footer-dot">✦</span><span>یک قدم کوچک، یک پیشرفت بزرگ</span><span class="footer-spacer"></span><span class="local-badge"><span></span> اطلاعات فقط روی همین دستگاه</span></footer>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="modal-header"><div><span class="modal-eyebrow" id="modalEyebrow">درس‌یار</span><h2 id="modalTitle">افزودن مورد جدید</h2></div><button class="icon-button modal-close" data-action="modal-close" type="button" aria-label="بستن پنجره"><span data-icon="close"></span></button></header>
+      <form id="modalForm" class="modal-form"><div id="modalFields" class="modal-fields"></div><div class="form-error" id="modalError" role="alert"></div><div class="modal-actions"><button class="button button-ghost" data-action="modal-close" type="button">انصراف</button><button class="button button-primary" type="submit" id="modalSubmit">ذخیره</button></div></form>
+    </section>
+  </div>
+
+  <div class="date-picker-overlay" id="datePickerOverlay" hidden>
+    <section class="date-picker-card" role="dialog" aria-modal="true" aria-labelledby="datePickerTitle">
+      <header class="date-picker-header">
+        <button class="icon-button" type="button" data-action="date-prev" aria-label="ماه قبل" title="ماه قبل"><span data-icon="chevron-left"></span></button>
+        <div class="date-picker-heading"><h2 id="datePickerTitle">انتخاب تاریخ</h2><p id="datePickerSubtitle">تقویم هجری شمسی</p></div>
+        <button class="icon-button" type="button" data-action="date-next" aria-label="ماه بعد" title="ماه بعد"><span data-icon="chevron-right"></span></button>
+      </header>
+      <div class="date-picker-weekdays" aria-hidden="true"><span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span></div>
+      <div class="date-picker-grid" id="datePickerGrid"></div>
+      <footer class="date-picker-footer">
+        <button class="button button-ghost" type="button" data-action="date-clear">پاک کردن</button>
+        <button class="button button-ghost" type="button" data-action="date-close">بستن</button>
+        <button class="button button-primary" type="button" data-action="date-today">امروز</button>
+      </footer>
+    </section>
+  </div>
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <input type="file" id="importFileInput" accept="application/json,.json" hidden>
+</body>
+</html>
